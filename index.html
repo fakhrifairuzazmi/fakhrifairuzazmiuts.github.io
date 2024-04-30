@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { 
+            height: 600px; 
+        }
+        .leaflet-control { 
+            position: relative; 
+            background-color: rgb(255, 255, 255);
+            border-color: rgb(255, 255, 255);
+
+        }
+        .leaflet-bottom.leaflet-left { 
+            bottom: auto; 
+            top: 10px;
+        }
+
+
+    
+        
+    </style>
+</head>
+<body>
+<div id="title" style="text-align: center;">
+    <h1>Foto selama 1 tahun</h1>
+    <h2>Fakhri Fairuz Azmi</h2>
+    <h3>22/505569/SV/21819</h3>
+</div>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+<script src="coordinate.js"></script>
+
+<script>
+
+var map = L.map('map').setView([-7.3, 110], 9);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Heatmap Data 1
+
+
+// Heatmap Data 2
+
+
+var heatmap1  = L.heatLayer(heatDataApr, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap2  = L.heatLayer(heatDataMei, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap3  = L.heatLayer(heatDataJun, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap4  = L.heatLayer(heatDataJul, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap5  = L.heatLayer(heatDataAgu, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap6  = L.heatLayer(heatDataSep, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap7  = L.heatLayer(heatDataOkt, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap8  = L.heatLayer(heatDataNov, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap9  = L.heatLayer(heatDataDes, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap10 = L.heatLayer(heatDataJan, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap11 = L.heatLayer(heatDataFeb, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap12 = L.heatLayer(heatDataMar, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap13 = L.heatLayer(heatDataApr24, { radius: 20, blur: 15, maxZoom: 16 });
+var heatmap14 = L.heatLayer(heatData1Tahun, { radius: 20, blur: 15, maxZoom: 16 });
+
+
+var heatmaps = 
+[
+    heatmap1, 
+    heatmap2,
+    heatmap3,
+    heatmap4,
+    heatmap5,
+    heatmap6,
+    heatmap7,
+    heatmap8,
+    heatmap9,
+    heatmap10,
+    heatmap11,
+    heatmap12,
+    heatmap13,
+    heatmap14
+];
+
+// Add heatmap to the map
+heatmap14.addTo(map)
+
+// Function to toggle between heatmaps
+function toggleHeatmap(index) {
+    for (var i = 0; i < heatmaps.length; i++) {
+        if (i === index) {
+            heatmaps[i].addTo(map);
+        } else {
+            map.removeLayer(heatmaps[i]);
+        }
+    }
+}
+
+// Create toggle buttons
+var button1 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'April';
+        button.onclick = function() {
+            toggleHeatmap(0);
+        };
+        return button;
+    }
+});
+
+var button2 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Mei';
+        button.onclick = function() {
+            toggleHeatmap(1);
+        };
+        return button;
+    }
+});
+
+var button3 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Juni';
+        button.onclick = function() {
+            toggleHeatmap(2);
+        };
+        return button;
+    }
+});
+
+var button4 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Juli';
+        button.onclick = function() {
+            toggleHeatmap(3);
+        };
+        return button;
+    }
+});
+
+var button5 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Agustus';
+        button.onclick = function() {
+            toggleHeatmap(4);
+        };
+        return button;
+    }
+});
+
+var button6 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'September';
+        button.onclick = function() {
+            toggleHeatmap(5);
+        };
+        return button;
+    }
+});
+
+var button7 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Oktober';
+        button.onclick = function() {
+            toggleHeatmap(6);
+        };
+        return button;
+    }
+});
+
+var button8 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'November';
+        button.onclick = function() {
+            toggleHeatmap(7);
+        };
+        return button;
+    }
+});
+
+var button9 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Desember';
+        button.onclick = function() {
+            toggleHeatmap(8);
+        };
+        return button;
+    }
+});
+
+var button10 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Januari';
+        button.onclick = function() {
+            toggleHeatmap(9);
+        };
+        return button;
+    }
+});
+
+var button11 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Februari';
+        button.onclick = function() {
+            toggleHeatmap(10);
+        };
+        return button;
+    }
+});
+
+var button12 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'Maret';
+        button.onclick = function() {
+            toggleHeatmap(11);
+        };
+        return button;
+    }
+});
+
+var button13 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = 'April';
+        button.onclick = function() {
+            toggleHeatmap(12);
+        };
+        return button;
+    }
+});
+
+var button14 = L.Control.extend({
+    onAdd: function() {
+        var button = L.DomUtil.create('button', 'leaflet-control-button');
+        button.innerHTML = '1 Tahun';
+        button.onclick = function() {
+            toggleHeatmap(13);
+        };
+        return button;
+    }
+});
+
+(new button14()).addTo(map);
+(new button1()).addTo(map);
+(new button2()).addTo(map);
+(new button3()).addTo(map);
+(new button4()).addTo(map);
+(new button5()).addTo(map);
+(new button6()).addTo(map);
+(new button7()).addTo(map);
+(new button8()).addTo(map);
+(new button9()).addTo(map);
+(new button10()).addTo(map);
+(new button11()).addTo(map);
+(new button12()).addTo(map);
+(new button13()).addTo(map);
+
+
+
+
+var imageUrl = 'https://github.com/fakhrifairuzazmi/gambar-gambar/blob/main/20240410_093821.jpg?raw=true';
+var imageHtml = '<img src="' + imageUrl + '" width="200px" />';
+var circleWonosobo = L.circle([-7.339, 109.91], {
+    radius: 4000,
+}).addTo(map);
+
+circleWonosobo.bindPopup('Wonosobo<br>'+ imageHtml).openPopup();
+
+
+circleWonosobo.setStyle({opacity: 0, fillOpacity: 0});
+
+
+var imageUrl = 'https://github.com/fakhrifairuzazmi/gambar-gambar/blob/main/IMG-20230529-WA0070.jpg?raw=true';
+var imageHtml = '<img src="' + imageUrl + '" width="200px" />';
+var circleSemarang = L.circle([-7.049600097417255,110.43853670973095
+          ], {
+    radius: 4000,
+}).addTo(map);
+
+circleSemarang.bindPopup('Semarang<br>'+ imageHtml).openPopup();
+
+
+circleSemarang.setStyle({opacity: 0, fillOpacity: 0});
+
+var imageUrl = 'https://github.com/fakhrifairuzazmi/gambar-gambar/blob/main/IMG_3139.jpg?raw=true';
+var imageHtml = '<img src="' + imageUrl + '" width="200px" />';
+var circleJogja = L.circle([ -7.76793805798475,110.37858076351421 ], {
+    radius: 4000,
+}).addTo(map);
+
+circleJogja.bindPopup('Jogja<br>'+ imageHtml).openPopup();
+
+
+circleJogja.setStyle({opacity: 0, fillOpacity: 0});
+
+</script>
+
+</body>
+</html>
